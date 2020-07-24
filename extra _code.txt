@@ -1,0 +1,22 @@
+<div style="margin: 40px;">
+        <?php
+        include 'admin/config.php';
+        $sql = "SELECT * FROM np ORDER BY id";
+        $run = mysqli_query($conn, $sql) or die("sqli error..");
+        if (mysqli_num_rows($run) > 0) {
+            while ($row = mysqli_fetch_assoc($run)) {
+        ?>
+                <hr>
+
+                <img style="width: 100%;" src="<?php echo "admin/imgs/" . $row['img_name'] ?>">
+                <hr>
+        <?php
+            }
+        }
+        ?>
+</div>
+
+
+make a databse in mysql (Inquilab_e_hind).
+then import database file
+    
