@@ -2,7 +2,7 @@
 include 'config.php';
 session_start();
 if (isset($_SESSION['username'])) {
-    header("location: {$myurl}/admin/home.php");
+    header("location: {$myurl}/admin/dashboard.php");
 }
 ?>
 <!doctype html>
@@ -50,7 +50,7 @@ if (isset($_SESSION['username'])) {
                 $row = mysqli_fetch_assoc($run);
                 session_start();
                 $_SESSION['username'] = $row['username'];
-                header("Location: {$myurl}/admin/home.php");
+                header("Location: {$myurl}/admin/dashboard.php");
             } else {
                 echo "<div class='alert alert-danger'> username and password are not found in database </div>";
             }
