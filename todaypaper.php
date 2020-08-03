@@ -1,13 +1,39 @@
 <?php include 'herader.php'; ?>
 
 
-<div class="text-center" style="margin-top: 4%; margin-bottom: 2%;">
-    <h1 style="text-transform: uppercase;" class="display-4"><?php echo $_GET['name'] ?></h1>
-    <p>This is <?php echo date("jS/F/Y"); ?> newspapers of <?php echo $_GET['name'] ?></p>
+<div>
+    <ul style="display:flex; justify-content: center; margin-top: 10px;">
+        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 1</li>
+        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 2</li>
+        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 3</li>
+        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 4</li>
+        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 5</li>
+        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 6</li>
+        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 7</li>
+        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 8</li>
+    </ul>
 </div>
 
 
-<div class="container">
+<div class="text-center" style="margin-top: 4%; margin-bottom: 2%;">
+    <h1 style="text-transform: uppercase;" class="display-4"><b><?php echo $_GET['name'] ?></b></h1>
+    <p>Today's Newspaper page-1</p>
+
+</div>
+
+<div class="wrapper">
+    <div class="left">
+        <img class="np" src="assets/1.jpeg" />
+    </div>
+
+    <div class="right">
+        <div class="inner">
+            <img src="assets/1.jpeg" />
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container">
 
     <?php
 
@@ -32,6 +58,23 @@
         }
     }
     ?>
-</div>
+</div> -->
+
+
+<script type="text/javascript">
+    const inner = document.querySelector(".inner");
+    const left = document.querySelector(".left");
+    left.addEventListener("mousemove", handleMousemove, false);
+
+    function handleMousemove(event) {
+        let {
+            width,
+            height
+        } = this.getBoundingClientRect();
+        let xAxis = event.offsetX / width * 100;
+        let yAxis = event.offsetY / height * 100;
+        inner.style.transform = `translate(-${xAxis}%, -${yAxis}%)`;
+    }
+</script>
 
 <?php include 'footer.php'; ?>

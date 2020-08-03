@@ -60,6 +60,31 @@
             </div>
         </div>
     </div>
+    <br>
+    <hr>
+    <h1 class="display-4">Breaking news</h1>
+    <br>
+    <form action="<?php $_SERVER["PHP_SELF"] ?>" method="POST">
+        <div class="form-group">
+            <label>Breaking news</label>
+            <textarea class="form-control" name="bn_data" rows="3"></textarea>
+        </div>
+        <button type="submit" name="breakingnewssubmit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <?php
+
+    if (isset($_POST['breakingnewssubmit'])) {
+        include 'config.php';
+        $bn_data = $_POST['bn_data'];
+        $sqlbn = "INSERT INTO `breaking_news`(`b_news`) VALUES ('{$bn_data}')";
+        $run = mysqli_query($conn, $sqlbn) or die("sqlbn error");
+        if ($run) {
+            echo "ok done";
+        }
+    }
+    ?>
+
 
 </div>
 
