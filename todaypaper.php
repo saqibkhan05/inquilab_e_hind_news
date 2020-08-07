@@ -1,16 +1,19 @@
-<?php include 'herader.php'; ?>
+<?php include 'herader.php';
+$city_name = $_GET['name'];
+$pageno = $_GET['pageno'];
+?>
 
 
 <div>
     <ul style="display:flex; justify-content: center; margin-top: 10px;">
-        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 1</li>
-        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 2</li>
-        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 3</li>
-        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 4</li>
-        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 5</li>
-        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 6</li>
-        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 7</li>
-        <li style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;">Page no - 8</li>
+        <a href="todaypaper.php?name=<?php echo $city_name; ?>&pageno=1" style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;" id="btn1">Page no - 1</a>
+        <a href="todaypaper.php?name=<?php echo $city_name; ?>&pageno=2" style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;" id="btn2">Page no - 2</a>
+        <a href="todaypaper.php?name=<?php echo $city_name; ?>&pageno=3" style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;" id="btn3">Page no - 3</a>
+        <a href="todaypaper.php?name=<?php echo $city_name; ?>&pageno=4" style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;" id="btn4">Page no - 4</a>
+        <a href="todaypaper.php?name=<?php echo $city_name; ?>&pageno=5" style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;" id="btn5">Page no - 5</a>
+        <a href="todaypaper.php?name=<?php echo $city_name; ?>&pageno=6" style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;" id="btn6">Page no - 6</a>
+        <a href="todaypaper.php?name=<?php echo $city_name; ?>&pageno=7" style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;" id="btn7">Page no - 7</a>
+        <a href="todaypaper.php?name=<?php echo $city_name; ?>&pageno=8" style="padding: 10px; list-style: none; background-color: navy; color:white; border-radius: 10px; margin: 5px;" id="btn8">Page no - 8</a>
     </ul>
 </div>
 
@@ -21,44 +24,40 @@
 
 </div>
 
+
+
+<?php
+
+include 'admin/config.php';
+
+$sql1 = "SELECT * FROM `news_ paper`
+    ORDER BY `id` DESC  
+    LIMIT 1";
+$run1 = mysqli_query($conn, $sql1);
+$data1 = mysqli_fetch_assoc($run1);
+$date = $data1['date'];
+
+
+$sql2 = "SELECT * FROM `news_ paper` WHERE `date`='{$date}' and (`city`='{$city_name}' and `p_no` = {$pageno})";
+
+$run2 = mysqli_query($conn, $sql2) or die("SQL ERROR");
+$data2 = mysqli_fetch_assoc($run2);
+
+?>
+
+
+
 <div class="wrapper">
     <div class="left">
-        <img class="np" src="assets/1.jpeg" />
+        <img class="np" src="<?php echo 'admin/imgs/' . $data2['img_name']; ?>" />
     </div>
 
     <div class="right">
         <div class="inner">
-            <img src="assets/1.jpeg" />
+            <img src="<?php echo 'admin/imgs/' . $data2['img_name']; ?>" />
         </div>
     </div>
 </div>
-
-<!-- <div class="container">
-
-    <?php
-
-    include 'admin/config.php';
-
-    $city_name = $_GET['name'];
-
-    $date_now = date("jS/F/Y");
-
-    $sql = "SELECT * FROM `news_ paper` WHERE `date`='{$date_now}' and `city`='{$city_name}'  ORDER BY p_no";
-
-    $run = mysqli_query($conn, $sql) or die("SQL ERROR");
-
-    if (mysqli_num_rows($run) > 0) {
-        while ($row = mysqli_fetch_assoc($run)) {
-    ?>
-            <div class="text-center">
-                <img src="<?php echo "admin/imgs/" . $row['img_name'] ?>">
-            </div>
-            <hr>
-    <?php
-        }
-    }
-    ?>
-</div> -->
 
 
 <script type="text/javascript">

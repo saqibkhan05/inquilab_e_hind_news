@@ -8,7 +8,7 @@ $city = $_GET['city'];
 <br><br>
 
 <div style="margin-right: 10%; margin-left: 10%;">
-    <h1 class="display-4">Upload New Newspaper</h1>
+    <h1>Upload New Newspaper</h1>
     <hr>
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
         <div class="row">
@@ -46,8 +46,10 @@ $city = $_GET['city'];
 
     <?php
     if (isset($_POST['submit'])) {
-        $page_no = $_POST['page_no'];
 
+        include 'config.php';
+
+        $page_no = $_POST['page_no'];
         $p_no = $_POST['page_no'];
         $date = date("jS/F/Y");
 
@@ -76,9 +78,9 @@ $city = $_GET['city'];
                 $error[] = "only JPG PNG AND JPEG files are supported";
             }
 
-            if ($img_size > 16777216) {
-                $error[] = "the file size should be less then 2MB.";
-            }
+            // if ($img_size > 16777216) {
+            //     $error[] = "the file size should be less then 4MB.";
+            // }
 
             if (empty($error) == true) {
                 move_uploaded_file($img_temp_name, "imgs/" . $img_name);
@@ -113,15 +115,12 @@ $city = $_GET['city'];
         }
     }
     ?>
-
-    <hr>
-    <?php $date_now = date("jS/F/Y"); ?>
-    <h1 class="display-4"><?php echo $date_now; ?></h1>
     <hr>
     <div class="row">
 
         <?php
-        $sql2 = "SELECT * FROM `news_ paper` WHERE `date`='{$date_now}' and `city`='{$city}'";
+        $date = date("jS/F/Y");
+        $sql2 = "SELECT * FROM `news_ paper` WHERE `date`='{$date}' and `city`='{$city}'";
         $run2 = mysqli_query($conn, $sql2) or die("sql error");
         while ($data = mysqli_fetch_assoc($run2)) {
         ?>
@@ -129,7 +128,7 @@ $city = $_GET['city'];
             <div class="col">
                 <img style="max-height: 200px;" src="<?php echo "imgs/" . $data['img_name'] ?>">
                 <p>Page no. <?php echo $data['p_no']; ?></p>
-                <a href="" class="btn btn-danger text-center">re-upload</a>
+                <a href="" class="btn btn-danger text-center">Delete</a>
             </div>
         <?php
         }

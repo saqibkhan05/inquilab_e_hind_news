@@ -13,7 +13,7 @@
         .wrapper {
             display: flex;
             /* height: 300vh;*/
-            width: 1400px;
+            width: 1200px;
             height: 900px;
             margin: 10px auto;
         }
@@ -27,13 +27,13 @@
             margin: 10px;
             padding: 5px;
             flex: 1 1 auto;
-            max-width: 40%;
+            max-width: 30%;
         }
 
         .right {
             flex: 1 1 auto;
             border: 1px solid blue;
-            max-width: 60%;
+            max-width: 70%;
         }
 
         .left {
@@ -44,7 +44,7 @@
 
         .left>img {
             width: 100%;
-            height: auto;
+            height: 100%;
             pointer-events: none;
         }
 
@@ -72,40 +72,41 @@
     </style>
     <title>Hello, world!</title>
 </head>
+<br>
 <div>
     <a href=" index.php">
         <img style="margin-left: 35%; width: 30%;" src=" assets/logo.png" alt="">
     </a>
 </div>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<br>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="oldnews.php">Old_newspapers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="aboutus.php">About_us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contactus.php">Contact_us</a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="blog.php">Blog</a>
-                </li> -->
+<nav class="abc">
+    <ul>
+        <li><a href="index.php">home</a></li>
+        <li><a href="oldnews.php">Old_newspapers</a></li>
+        <li><a href="aboutus.php">About_us</a></li>
+        <li><a href="contactus.php">Contact_us</a></li>
+    </ul>
+</nav>
 
-            </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form> -->
+
+<div class="container">
+    <div style="margin-top: -16px;">
+        <div class="row">
+            <div style="background-color: red; color: white;" class="col-sm-2">
+                <p style="padding-top: 10px;" class="text-center"><big><b>Breaking news..</b></big></p>
+            </div>
+            <div class="col-sm-10">
+
+                <?php
+                include 'admin/config.php';
+                $sqlshowbn = "SELECT * FROM `breaking_news`";
+                $runsbn = mysqli_query($conn, $sqlshowbn) or die("sql show breakingnews error");
+                $data = mysqli_fetch_assoc($runsbn);
+                ?>
+                <marquee style="padding-top: 10px;" behavior="" direction=""><b><?php echo $data['b_news'] ?></b></marquee>
+            </div>
         </div>
-    </nav>
+    </div>
+</div>

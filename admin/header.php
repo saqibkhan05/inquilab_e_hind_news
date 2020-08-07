@@ -26,7 +26,8 @@ if (!isset($_SESSION['username'])) {
     <!-- start navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="dashboard.php">
-            <img src="../assets/logo3.png" alt="">
+            <!-- <img src="../assets/logo3.png" alt=""> -->
+            Admin Dashboard
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,7 +35,15 @@ if (!isset($_SESSION['username'])) {
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.php">Upload new newspaer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="breakingnews.php">Breaking news</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="advertisement.php">advertisement</a>
+                </li>
 
             </ul>
             <form class="form-inline my-2 my-lg-0">

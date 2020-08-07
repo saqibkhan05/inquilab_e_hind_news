@@ -1,6 +1,32 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
 .abc {
+  background-color: navy;
+}
+
+.abc ul {
+  display: flex;
+  justify-content: center;
+}
+
+.abc ul li {
   padding: 10px;
   list-style: none;
-  background-color: navy;
-  margin: 5px;
+}
+
+.abc ul li a {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+.abc ul li a:hover {
+  background-color: white;
+  color: navy;
+  padding: 10px;
+  font-weight: 1000;
 }
